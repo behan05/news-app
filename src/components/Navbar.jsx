@@ -28,8 +28,21 @@ function Navbar() {
     ];
 
     const languages = [
+        { label: "Arabic", path: "/?language=ar" },
+        { label: "German", path: "/?language=de" },
         { label: "English", path: "/?language=en" },
         { label: "Hindi", path: "/?language=hi" },
+        { label: "Spanish", path: "/?language=es" },
+        { label: "French", path: "/?language=fr" },
+        { label: "Hebrew", path: "/?language=he" },
+        { label: "Italian", path: "/?language=it" },
+        { label: "Dutch", path: "/?language=nl" },
+        { label: "Norwegian", path: "/?language=no" },
+        { label: "Portuguese", path: "/?language=pt" },
+        { label: "Russian", path: "/?language=ru" },
+        { label: "Swedish", path: "/?language=sv" },
+        { label: "Chinese", path: "/?language=zh" },
+        { label: "Urdu", path: "/?language=ud" },
     ];
 
     const handleSearch = (e) => {
@@ -95,16 +108,24 @@ function Navbar() {
                     </li>
 
                     <div className={styles.search}>
-                        <input
-                            placeholder="Search news..."
-                            name='search'
-                            value={search}
-                            onChange={handleSearch}
-                        />
-                        <button onClick={handleSubmit}>
-                            <i className="ri-search-line"></i>
-                        </button>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                handleSubmit();
+                            }}
+                        >
+                            <input
+                                placeholder="Search news..."
+                                name="search"
+                                value={search}
+                                onChange={handleSearch}
+                            />
+                            <button type="submit">
+                                <i className="ri-search-line"></i>
+                            </button>
+                        </form>
                     </div>
+
                 </ul>
             </div>
 

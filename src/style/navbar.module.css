@@ -47,33 +47,51 @@
   color: #38bdf8;
 }
 
-/* Search */
+/* Search container */
 .search {
   padding: 4px 10px;
   border-radius: 6px;
   background: #020617;
   border: 1px solid #1e293b;
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
+  transition: border 0.2s ease-in-out, background 0.2s ease-in-out;
 }
 
+/* Input field */
 .search input {
+  flex: 1;
   padding: 6px 10px;
   border-radius: 6px;
   background: transparent;
   border: none;
   outline: none;
   color: #e5e7eb;
+  transition: all 0.2s ease-in-out;
 }
 
+.search input::placeholder {
+  color: #94a3b8;
+}
+
+
+/* Button */
 .search button {
   padding: 6px 10px;
   border-radius: 6px;
   background: #020617;
   border: 1px solid #1e293b;
   color: #e5e7eb;
+  transition: all 0.2s ease-in-out;
 }
+
+.search button:hover {
+  background: #1e293b;
+  border-color: #3b82f6;
+  cursor: pointer;
+}
+
 
 /* ===============================
    Dropdown
