@@ -1,9 +1,11 @@
 .footer {
   background-color: #0f172a;
   color: #e5e7eb;
-  padding: 40px 20px;
   margin-top: 60px;
   border-top: 1px solid #1e293b;
+  border-bottom: 1px solid #1e293b;
+  padding: 20px 24px;
+  border-radius: 10px;
 }
 
 .container {
