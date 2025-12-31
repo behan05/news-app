@@ -1,0 +1,219 @@
+/* ===============================
+   Container
+================================ */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* ===============================
+   Card
+================================ */
+.newsCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+.newsCard:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   Image
+================================ */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.newsImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.newsCard:hover .newsImage {
+  transform: scale(1.1);
+}
+
+/* gradient overlay */
+.imageWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+/* ===============================
+   Content
+================================ */
+.content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.source {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.description {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ===============================
+   Footer
+================================ */
+.footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.readMore {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  transition: all 0.3s ease;
+}
+
+.readMore:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* ===============================
+   Loading text
+================================ */
+.loading {
+  text-align: center;
+  color: whitesmoke;
+  letter-spacing: 1px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* ===============================
+   Skeleton Loader
+================================ */
+.skeletonContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 20px;
+}
+
+.skeletonCard {
+  background: #020617;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.skeletonImage {
+  height: 180px;
+  background: linear-gradient(90deg, #020617 25%, #1e293b 37%, #020617 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonContent {
+  padding: 16px;
+}
+
+.skeletonLine {
+  height: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #020617 25%, #1e293b 37%, #020617 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonLine.short {
+  width: 40%;
+}
+
+.skeletonLine.medium {
+  width: 70%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 768px) {
+  .imageWrapper {
+    height: 160px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+}

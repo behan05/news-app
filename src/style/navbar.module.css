@@ -1,0 +1,199 @@
+/* ===============================
+   Navbar
+================================ */
+.navbar {
+  background: #020617;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* Logo */
+.logo {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   Desktop Menu
+================================ */
+.navOptions {
+  display: flex;
+}
+
+.unorderList {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.unorderList a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.unorderList a:hover {
+  color: #38bdf8;
+}
+
+/* Search */
+.search {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.search input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e5e7eb;
+}
+
+.search button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+}
+
+/* ===============================
+   Dropdown
+================================ */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  min-width: 160px;
+  background: #020617;
+  border-radius: 10px;
+  padding: 6px 0;
+  display: none;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown:hover .dropdownMenu {
+  display: block;
+}
+
+.dropdownMenu li {
+  padding: 10px 16px;
+}
+
+.dropdownMenu li:hover {
+  background: #0f172a;
+}
+
+/* ===============================
+   Mobile Menu Button
+================================ */
+.menuBtn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ===============================
+   Mobile Drawer
+================================ */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 280px;
+  background: #020617;
+  padding: 20px;
+  transition: right 0.35s ease;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.mobileMenu.open {
+  right: 0;
+}
+
+.mobileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.mobileHeader span {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.mobileList {
+  list-style: none;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobileList a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.langContainer {
+  margin-top: 20px;
+  border-top: 1px solid #1e293b;
+  padding-top: 12px;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.langContainer p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.langSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 1024px) {
+  .navOptions {
+    display: none;
+  }
+
+  .menuBtn {
+    display: block;
+  }
+}
