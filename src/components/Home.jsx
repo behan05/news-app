@@ -7,6 +7,8 @@ import { useSearchParams } from 'next/navigation';
 function Home() {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 
     const params = useSearchParams();
     const query = params.get("q") || "Cricket";
@@ -15,17 +17,25 @@ function Home() {
     useEffect(() => {
         const fetchNews = async () => {
             setLoading(true);
+            setError(null);
+
             try {
                 const res = await fetch(
-                    `https://newsapi.org/v2/everything?q=${query}&language=${language}&sortBy=publishedAt&apiKey=57f8a2226cf44701b039d772f48017a2`
+                    `https://newsapi.org/v2/everything?q=${query}&language=${language}&sortBy=publishedAt&apiKey=${API_KEY}`
                 );
+
                 const data = await res.json();
 
-                if (data.status === "ok") {
-                    setArticles(data.articles);
+                if (!res.ok || data.status === "error") {
+                    setError(data.message || "Daily request limit reached");
+                    setArticles([]);
+                    return;
                 }
+
+                setArticles(data.articles || []);
             } catch (e) {
-                console.error(e);
+                setError("Something went wrong. Please try again.");
+                setArticles([]);
             } finally {
                 setLoading(false);
             }
@@ -38,12 +48,14 @@ function Home() {
         <div>
             <h5
                 style={{
-                    color: 'whitesmoke',
-                    padding: '10px 20px'
-                }}>
+                    color: "whitesmoke",
+                    padding: "10px 20px",
+                }}
+            >
                 {query} News ({language.toUpperCase()})
             </h5>
-            {loading ?
+
+            {loading ? (
                 <div className={styles.skeletonContainer}>
                     {Array.from({ length: 6 }).map((_, i) => (
                         <div key={i} className={styles.skeletonCard}>
@@ -55,9 +67,26 @@ function Home() {
                             </div>
                         </div>
                     ))}
-                </div> : (
-                    <div className={styles.container}>
-                        {articles.map((item, index) => (
+                </div>
+            ) : error ? (
+                /* API limit / error message */
+                <p
+                    style={{
+                        color: "#fca5a5",
+                        textAlign: "center",
+                        padding: "20px",
+                    }}
+                >
+                    ⚠️ {error}
+                    <br />
+                    <small style={{ color: "#cbd5f5" }}>
+                        This app uses a free NewsAPI plan (50 requests/day).
+                    </small>
+                </p>
+            ) : (
+                <div className={styles.container}>
+                    {articles.length ? (
+                        articles.map((item, index) => (
                             <NewsItems
                                 key={index}
                                 source={item?.source?.name}
@@ -67,11 +96,24 @@ function Home() {
                                 pic={item?.urlToImage}
                                 url={item?.url}
                             />
-                        ))}
-                    </div>
-                )}
+                        ))
+                    ) : (
+                        /* No articles case (not an error) */
+                        <p
+                            style={{
+                                color: "whitesmoke",
+                                textAlign: "center",
+                                padding: "20px",
+                            }}
+                        >
+                            No articles found.
+                        </p>
+                    )}
+                </div>
+            )}
         </div>
-    )
+    );
+
 }
 
 export default Home
