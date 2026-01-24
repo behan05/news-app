@@ -1,6 +1,7 @@
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import '../style/global.css';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'News Application',
@@ -19,9 +20,13 @@ function RootLayout({ children }) {
         />
       </head>
       <body className="appContainer">
-        <Navbar />
+        <Suspense fallback={null}>
+          <Navbar />
+        </Suspense>
         {children}
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   )
